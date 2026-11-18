@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: #faf8f5;
+  color: #1a1a1a;
+  min-height: 100vh;
+}
+
+::selection {
+  background: #e5a93b;
+  color: #1a1a1a;
+}
+
+:focus-visible {
+  outline: 2px solid #e5a93b;
+  outline-offset: 3px;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium tracking-wide transition disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-botanical {
+    @apply btn bg-botanical text-paper hover:bg-botanical-deep;
+  }
+  .btn-turmeric {
+    @apply btn bg-turmeric text-charcoal hover:brightness-95;
+  }
+  .btn-line {
+    @apply btn border border-charcoal/15 bg-transparent text-charcoal hover:border-botanical hover:text-botanical;
+  }
+  .field {
+    @apply w-full rounded-2xl border border-line bg-white px-3.5 py-3 text-sm outline-none ring-botanical/30 placeholder:text-clay/70 focus:ring-2;
+  }
+  .eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-[0.22em] text-botanical;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
