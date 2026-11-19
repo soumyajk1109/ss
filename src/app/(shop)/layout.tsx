@@ -1,6 +1,7 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileTabBar } from "@/components/layout/MobileTabBar";
+import { storefront } from "@/content/storefront";
 import { brand } from "@/lib/brand";
 import { getNavTree } from "@/lib/catalog";
 import { paymentsMode } from "@/lib/payments-mode";
@@ -25,7 +26,7 @@ export default async function ShopLayout({ children }: { children: React.ReactNo
   return (
     <div className="flex min-h-screen flex-col">
       <p className="bg-botanical px-4 py-2 text-center text-[11px] uppercase tracking-[0.18em] text-paper">
-        Inclusive of GST · Free shipping over {formatInr(brand.freeShippingOverInr)} · COD with OTP
+        {storefront.announcement.replace("{shipping}", formatInr(brand.freeShippingOverInr))}
       </p>
       {demo || otpDebug ? (
         <p className="bg-turmeric/40 px-4 py-2 text-center text-xs text-charcoal">
