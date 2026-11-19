@@ -5,7 +5,7 @@
  */
 export const storefront = {
   name: "SS",
-  metaTitle: "SS — Dress for the climate",
+  metaTitle: "SS — Fashion for the climate",
   metaDescription:
     "Men's, women's, and kids' clothing for Mumbai, Delhi NCR, Bengaluru, Hyderabad, Chennai, Kolkata, and Pune.",
   /** `{shipping}` is replaced with the free-shipping amount from brand.ts. */
