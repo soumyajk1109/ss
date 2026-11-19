@@ -11,7 +11,7 @@ export const storefront = {
   /** `{shipping}` is replaced with the free-shipping amount from brand.ts. */
   announcement: "Inclusive of GST · Free shipping over {shipping} · COD with OTP",
   hero: {
-    titleBefore: "Dress for the",
+    titleBefore: "Fashion for the",
     titleEmphasis: "climate",
     body: "Men’s, women’s, and kids’ clothing for humid commutes, air-conditioned offices, and the wedding on Saturday.",
     primary: { label: "Shop the edit", href: "/shop" },
