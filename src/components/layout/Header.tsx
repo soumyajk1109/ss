@@ -4,6 +4,7 @@ import { Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SearchBox } from "@/components/shop/SearchBox";
+import { storefront } from "@/content/storefront";
 import type { NavDepartment } from "@/lib/types";
 
 export function Header({ nav }: { nav: NavDepartment[] }) {
@@ -42,7 +43,7 @@ export function Header({ nav }: { nav: NavDepartment[] }) {
           <Menu />
         </button>
         <Link href="/" className="font-display text-3xl leading-none tracking-tight">
-          SS
+          {storefront.name}
         </Link>
         <nav className="ml-6 hidden items-center gap-6 md:flex" aria-label="Departments">
           {nav.map((department) => (
@@ -106,7 +107,7 @@ export function Header({ nav }: { nav: NavDepartment[] }) {
       {open ? (
         <div className="fixed inset-0 z-50 overflow-auto bg-botanical px-5 py-6 text-paper md:hidden">
           <div className="flex items-center justify-between">
-            <p className="font-display text-4xl">SS</p>
+            <p className="font-display text-4xl">{storefront.name}</p>
             <button type="button" aria-label="Close menu" onClick={() => setOpen(false)}>
               <X />
             </button>

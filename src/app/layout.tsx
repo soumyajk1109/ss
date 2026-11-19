@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Outfit } from "next/font/google";
 import { connection } from "next/server";
 import { Providers } from "@/components/providers";
+import { storefront } from "@/content/storefront";
 import "./globals.css";
 
 const display = Fraunces({
@@ -18,11 +19,10 @@ const sans = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    default: "SS — Dress for the climate",
-    template: "%s · SS",
+    default: storefront.metaTitle,
+    template: `%s · ${storefront.name}`,
   },
-  description:
-    "Men's, women's, and kids' clothing for Mumbai, Delhi NCR, Bengaluru, Hyderabad, Chennai, Kolkata, and Pune.",
+  description: storefront.metaDescription,
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
 };
 

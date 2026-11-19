@@ -5,6 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        /** Palette. Save and refresh the preview to see a color change. */
         turmeric: "#E5A93B",
         botanical: {
           DEFAULT: "#1B4D3E",
