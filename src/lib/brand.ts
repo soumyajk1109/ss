@@ -1,11 +1,11 @@
 export const brand = {
-  name: "SS",
-  legalName: process.env.SELLER_LEGAL_NAME || "SS Apparel Private Limited",
+  name: "RCS",
+  legalName: process.env.SELLER_LEGAL_NAME || "RCS",
   /** Sample checksum-shaped GSTIN. Set SELLER_GSTIN before issuing real tax invoices. */
   gstin: process.env.SELLER_GSTIN || "27AABCS0000A1Z5",
   sellerIsSample: !process.env.SELLER_GSTIN,
-  addressLines: ["14, Lohar Chawl Textile House", "Kalbadevi, Mumbai 400002"],
-  state: "Maharashtra",
+  addressLines: ["Holalu, Karnataka 400002"],
+  state: "Karnataka",
   stateCode: "27",
   email: "care@ssapparel.example",
   phone: "+91 22 4000 2210",

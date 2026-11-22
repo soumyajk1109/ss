@@ -4,8 +4,8 @@
  * Name, address, phone, and the free-shipping amount live in src/lib/brand.ts.
  */
 export const storefront = {
-  name: "SS",
-  metaTitle: "SS — Fashion for the climate",
+  name: "RCS",
+  metaTitle: "RCS — Fashion for the climate",
   metaDescription:
     "Men's, women's, and kids' clothing for Mumbai, Delhi NCR, Bengaluru, Hyderabad, Chennai, Kolkata, and Pune.",
   /** `{shipping}` is replaced with the free-shipping amount from brand.ts. */
