@@ -1,33 +1,13 @@
 "use client";
 
-import { Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { SearchBox } from "@/components/shop/SearchBox";
 import { storefront } from "@/content/storefront";
-import type { NavDepartment } from "@/lib/types";
 
-export function Header({ nav }: { nav: NavDepartment[] }) {
+export function Header({ phone }: { phone: string }) {
   const [open, setOpen] = useState(false);
-  const [searching, setSearching] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let stop = false;
-    async function load() {
-      const res = await fetch("/api/cart");
-      const data = (await res.json()) as { count?: number };
-      if (!stop) setCount(data.count ?? 0);
-    }
-    void load();
-    const onChange = () => void load();
-    window.addEventListener("ss-cart", onChange);
-    return () => {
-      stop = true;
-      window.removeEventListener("ss-cart", onChange);
-    };
-  }, []);
+  const [collectionsOpen, setCollectionsOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -36,98 +16,60 @@ export function Header({ nav }: { nav: NavDepartment[] }) {
     };
   }, [open]);
 
+  function close() {
+    setOpen(false);
+    setCollectionsOpen(false);
+  }
+
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 md:px-5">
-        <button type="button" className="md:hidden" aria-label="Open menu" onClick={() => setOpen(true)}>
+    <header className="sticky top-0 z-40 border-b border-line bg-paper">
+      <div className="mx-auto flex max-w-6xl items-center gap-3 px-3 py-2 md:px-5">
+        <button type="button" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(true)} className="grid h-10 w-10 place-items-center text-charcoal">
           <Menu />
         </button>
-        <Link href="/" className="font-display text-3xl leading-none tracking-tight">
-          {storefront.name}
+        <Link href="/" className="min-w-0" onClick={close}>
+          <img src={storefront.logo} alt="RCS Clothing" className="h-14 w-auto object-contain mix-blend-multiply md:h-16" />
         </Link>
-        <nav className="ml-6 hidden items-center gap-6 md:flex" aria-label="Departments">
-          {nav.map((department) => (
-            <div
-              key={department.slug}
-              className="relative"
-              onMouseEnter={() => setActive(department.slug)}
-              onMouseLeave={() => setActive(null)}
-            >
-              <Link href={`/shop/${department.slug}`} className="text-sm uppercase tracking-[0.18em]">
-                {department.name}
-              </Link>
-              {active === department.slug && department.categories.length ? (
-                <div className="absolute left-1/2 top-full z-40 w-[40rem] -translate-x-1/2 pt-4">
-                  <div className="grid grid-cols-3 gap-6 rounded-3xl border border-line bg-paper p-6 shadow-sm">
-                    {department.categories.map((category) => (
-                      <div key={category.slug}>
-                        <Link href={`/shop/${department.slug}/${category.slug}`} className="text-xs uppercase tracking-[0.16em] text-botanical">
-                          {category.name}
-                        </Link>
-                        <ul className="mt-2 space-y-1">
-                          {category.children.map((child) => (
-                            <li key={child.slug}>
-                              <Link href={`/shop/${department.slug}/${child.slug}`} className="text-sm hover:text-botanical">
-                                {child.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          ))}
-        </nav>
-        <div className="ml-auto hidden flex-1 justify-end md:flex">
-          <SearchBox />
-        </div>
-        <button type="button" className="ml-auto md:ml-2 md:hidden" aria-label="Search" onClick={() => setSearching((value) => !value)}>
-          <Search />
-        </button>
-        <Link href="/account" aria-label="Account" className="hidden md:inline-flex">
-          <UserRound />
-        </Link>
-        <Link href="/cart" aria-label={`Bag, ${count} items`} className="relative">
-          <ShoppingBag />
-          {count > 0 ? (
-            <span className="absolute -right-2 -top-2 grid h-5 min-w-5 place-items-center rounded-full bg-turmeric px-1 text-[10px] font-semibold">
-              {count}
-            </span>
-          ) : null}
-        </Link>
+        <a href={`tel:${phone.replace(/\s/g, "")}`} aria-label="Call the store" className="ml-auto grid h-11 w-11 place-items-center rounded-full bg-rcs-gold text-charcoal">
+          <Phone className="h-5 w-5" />
+        </a>
       </div>
-      {searching ? (
-        <div className="border-t border-line px-4 py-3 md:hidden">
-          <SearchBox compact />
-        </div>
-      ) : null}
       {open ? (
-        <div className="fixed inset-0 z-50 overflow-auto bg-botanical px-5 py-6 text-paper md:hidden">
+        <div className="fixed inset-0 z-50 overflow-auto bg-paper px-5 py-6 text-charcoal">
           <div className="flex items-center justify-between">
-            <p className="font-display text-4xl">{storefront.name}</p>
-            <button type="button" aria-label="Close menu" onClick={() => setOpen(false)}>
+            <img src={storefront.logo} alt="" className="h-12 w-auto object-contain mix-blend-multiply" />
+            <button type="button" aria-label="Close menu" onClick={close}>
               <X />
             </button>
           </div>
-          <div className="mt-8 space-y-8">
-            {nav.map((department) => (
-              <div key={department.slug}>
-                <Link href={`/shop/${department.slug}`} onClick={() => setOpen(false)} className="font-display text-4xl">
-                  {department.name}
-                </Link>
-                <div className="mt-3 grid grid-cols-2 gap-2 text-sm text-paper/80">
-                  {department.categories.map((category) => (
-                    <Link key={category.slug} href={`/shop/${department.slug}/${category.slug}`} onClick={() => setOpen(false)}>
-                      {category.name}
+          <nav className="mt-10 space-y-2" aria-label="Options">
+            <Link href="/" onClick={close} className="block py-3 font-display text-4xl">
+              Home
+            </Link>
+            <button
+              type="button"
+              className="flex w-full items-center justify-between py-3 text-left font-display text-4xl text-rcs-red"
+              aria-expanded={collectionsOpen}
+              onClick={() => setCollectionsOpen((value) => !value)}
+            >
+              Collections
+              <ChevronDown className={`h-7 w-7 transition ${collectionsOpen ? "rotate-180" : ""}`} />
+            </button>
+            {collectionsOpen ? (
+              <ul className="space-y-1 pb-3 pl-1">
+                {storefront.collections.map((item) => (
+                  <li key={item.slug}>
+                    <Link href={`/collections/${item.slug}`} onClick={close} className="block rounded-2xl px-3 py-3 text-lg hover:bg-white">
+                      {item.name}
                     </Link>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            <Link href="/#visit" onClick={close} className="block py-3 font-display text-4xl">
+              Visit
+            </Link>
+          </nav>
         </div>
       ) : null}
     </header>

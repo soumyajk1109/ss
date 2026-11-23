@@ -13,6 +13,7 @@ export function Textile({
   hex,
   label,
   patternKey,
+  image,
   badge,
   soldOut,
   large = false,
@@ -20,12 +21,25 @@ export function Textile({
   hex: string;
   label: string;
   patternKey: string;
+  image?: string;
   badge?: string;
   soldOut?: boolean;
   large?: boolean;
 }) {
   const ink = isLightHex(hex) ? "#1A1A1A" : "#FAF8F5";
   const pattern = patternFrom(patternKey);
+  if (image) {
+    return (
+      <div className={`relative overflow-hidden ring-1 ring-inset ring-charcoal/10 ${large ? "aspect-[4/5]" : "aspect-[3/4]"}`}>
+        <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        {label ? (
+          <p className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 font-display text-3xl leading-none text-white md:text-4xl">
+            {label}
+          </p>
+        ) : null}
+      </div>
+    );
+  }
   return (
     <div
       className={`relative overflow-hidden ring-1 ring-inset ring-charcoal/10 ${large ? "aspect-[4/5]" : "aspect-[3/4]"}`}
@@ -33,7 +47,7 @@ export function Textile({
     >
       <Pattern name={pattern} ink={ink} />
       {badge ? (
-        <span className="absolute left-3 top-3 bg-turmeric px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-charcoal">
+        <span className="absolute left-1/2 top-3 -translate-x-1/2 rounded-full bg-saffron px-2.5 py-1 text-[10px] font-bold text-charcoal">
           {badge}
         </span>
       ) : null}
@@ -42,9 +56,11 @@ export function Textile({
           Sold out
         </span>
       ) : null}
-      <p className="absolute inset-x-0 bottom-0 p-4 font-display text-3xl leading-none md:text-4xl" style={{ color: ink }}>
-        {label}
-      </p>
+      {label ? (
+        <p className="absolute inset-x-0 bottom-0 p-4 font-display text-3xl leading-none md:text-4xl" style={{ color: ink }}>
+          {label}
+        </p>
+      ) : null}
     </div>
   );
 }
