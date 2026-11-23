@@ -7,7 +7,7 @@ function asRole(value: unknown): Role {
 }
 
 /**
- * Edge-safe auth config. Middleware must not import the database.
+ * Routing-safe auth config. The proxy must not import the database.
  * The Node auth module spreads this and adds the OTP credentials provider.
  */
 export const authConfig = {

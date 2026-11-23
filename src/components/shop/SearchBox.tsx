@@ -3,10 +3,11 @@
 import { Search, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
+import { storefront } from "@/content/storefront";
 
 type Hit = { title: string; slug: string; department: string; fabric: string | null };
 
-export function SearchBox({ compact = false }: { compact?: boolean }) {
+export function SearchBox({ compact = false, variant = "field" }: { compact?: boolean; variant?: "field" | "bar" }) {
   const router = useRouter();
   const listId = useId();
   const [q, setQ] = useState("");
@@ -37,7 +38,7 @@ export function SearchBox({ compact = false }: { compact?: boolean }) {
   }, []);
 
   return (
-    <div ref={box} className={`relative ${compact ? "w-full" : "w-full max-w-md"}`}>
+    <div ref={box} className={`relative ${variant === "bar" || compact ? "w-full" : "w-full max-w-md"}`}>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -47,22 +48,26 @@ export function SearchBox({ compact = false }: { compact?: boolean }) {
         }}
       >
         <label className="sr-only" htmlFor={`${listId}-input`}>
-          Search SS
+          Search {storefront.name}
         </label>
-        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-clay" />
+        <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-clay" />
         <input
           id={`${listId}-input`}
           value={q}
           onChange={(event) => setQ(event.target.value)}
           onFocus={() => hits.length && setOpen(true)}
-          placeholder="Search kurtas, silk, school-run"
-          className="field pl-10 pr-10"
+          placeholder="Search sarees, silks…"
+          className={variant === "bar" ? "w-full rounded-full border border-transparent bg-white py-3 pl-11 pr-28 text-sm outline-none ring-maroon/30 focus:ring-2" : "field pl-10 pr-10"}
           autoComplete="off"
           role="combobox"
           aria-expanded={open}
           aria-controls={listId}
         />
-        {q ? (
+        {variant === "bar" ? (
+          <button type="submit" className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded-full bg-charcoal px-4 py-2 text-sm font-medium text-white">
+            Search
+          </button>
+        ) : q ? (
           <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-clay" onClick={() => setQ("")} aria-label="Clear search">
             <X className="h-4 w-4" />
           </button>

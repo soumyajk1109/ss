@@ -1,49 +1,62 @@
 /**
- * Storefront copy and links. Edit this file, save, and refresh http://localhost:3000.
- * Colors live in tailwind.config.ts (turmeric, botanical, paper, charcoal).
- * Name, address, phone, and the free-shipping amount live in src/lib/brand.ts.
+ * Brochure copy. The site does not sell online.
+ * Logo colours: red, gold, charcoal, cream — see tailwind.config.ts.
  */
 export const storefront = {
   name: "RCS",
-  metaTitle: "RCS — Fashion for the climate",
-  metaDescription:
-    "Men's, women's, and kids' clothing for Mumbai, Delhi NCR, Bengaluru, Hyderabad, Chennai, Kolkata, and Pune.",
-  /** `{shipping}` is replaced with the free-shipping amount from brand.ts. */
-  announcement: "Inclusive of GST · Free shipping over {shipping} · COD with OTP",
+  fullName: "Ranebennur Cloth Stores",
+  logo: "/rcs-logo.jpg",
+  metaTitle: "RCS Clothing — Ranebennur Cloth Stores",
+  metaDescription: "Silk, Art silk, Daily wear, Linen, Tissue sarees and many more are available at Ranebennur Cloth Stores, Gandhi Circle, Holalu.",
+  announcement: "Ranebennur Cloth Stores · Gandhi Circle, Holalu",
   hero: {
-    titleBefore: "Fashion for the",
-    titleEmphasis: "climate",
-    body: "Men’s, women’s, and kids’ clothing for humid commutes, air-conditioned offices, and the wedding on Saturday.",
-    primary: { label: "Shop the edit", href: "/shop" },
-    secondary: { label: "Festive edit", href: "/shop/women/ethnic" },
+    kicker: "RCS Clothing",
+    title: "Ranebennur Cloth Stores",
+    line: "Woven with love, worn for every occasion.",
   },
-  departments: [
-    { name: "Men", copy: "Kurtas, shirts, bandhgalas", href: "/shop/men" },
-    { name: "Women", copy: "Sarees, sets, dresses", href: "/shop/women" },
-    { name: "Kids", copy: "Festive, school-run, play", href: "/shop/kids" },
+  about:
+    "ಮದುವೆ ರೇಷ್ಮೆ, ಕೈಮಗ್ಗ ಹಾಗೂ ನಿತ್ಯದ ಸೀರೆಗಳ ಸಂಪೂರ್ಣ ಮಳಿಗೆ.\nYour Complete Destination for Bridal Silks, Handlooms & Everyday Sarees.",
+  collections: [
+    {
+      slug: "silk",
+      name: "Silk",
+      blurb: "Pure silk sarees with a firm hand and a deep shine, kept for weddings and temple visits.",
+      hex: "#E10600",
+      image: "/collections/silk.jpg",
+    },
+    {
+      slug: "art-silk",
+      name: "Art silk",
+      blurb: "Art silk with the drape of silk and a lighter feel for festive evenings.",
+      hex: "#F0B429",
+      image: "/collections/art-silk.jpg",
+    },
+    {
+      slug: "daily-wear",
+      name: "Daily wear saree",
+      blurb: "Sarees meant for the week: easy cotton and simple borders you can pleat in a minute.",
+      hex: "#C4513C",
+      image: "/collections/daily-wear.jpg",
+    },
+    {
+      slug: "linen",
+      name: "Linen sarees",
+      blurb: "Linen sarees with a dry weave, for hot afternoons in Holalu.",
+      hex: "#E4C98A",
+      image: "/collections/linen.jpg",
+    },
+    {
+      slug: "tissue",
+      name: "Tissue sarees",
+      blurb: "Tissue sarees shot with a fine metallic thread, light enough for a reception.",
+      hex: "#F6E7B2",
+      image: "/collections/tissue.jpg",
+    },
   ],
-  rail: {
-    eyebrow: "This week",
-    title: "On the rail",
-    linkLabel: "All pieces",
-    href: "/shop",
-  },
-  festive: {
-    eyebrow: "Festive",
-    title: "Silk, handloom, mirror work.",
-    body: "Ships in 2–4 days across the seven metros. A size is held for 15 minutes at checkout, then released if the payment or COD code does not land.",
-    cta: { label: "See sarees", href: "/shop/women/sarees" },
-  },
-  metros: [
-    { city: "Mumbai", pin: "400001" },
-    { city: "Delhi NCR", pin: "110001" },
-    { city: "Bengaluru", pin: "560001" },
-    { city: "Hyderabad", pin: "500001" },
-    { city: "Chennai", pin: "600001" },
-    { city: "Kolkata", pin: "700001" },
-    { city: "Pune", pin: "411001" },
-    { city: "Free shipping", pin: "411057", freeShippingLabel: true },
-  ],
-  footerNote:
-    "Prices include GST. UPI, cards, net banking, wallets, EMI, and cash on delivery where the pincode allows it.",
+  visit: ["RCS Gandhi Circle, Holalu"],
+  footerNote: "Ranebennur Cloth Stores · Gandhi Circle, Holalu",
 };
+
+export function collectionBySlug(slug: string) {
+  return storefront.collections.find((item) => item.slug === slug);
+}
