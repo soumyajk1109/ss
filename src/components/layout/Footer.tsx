@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { storefront } from "@/content/storefront";
 import { brand } from "@/lib/brand";
 
@@ -14,7 +13,7 @@ export function Footer() {
           <ul className="mt-3 space-y-2 text-sm">
             {storefront.collections.map((item) => (
               <li key={item.slug}>
-                <Link href={`/collections/${item.slug}`}>{item.name}</Link>
+                <span>{item.name}</span>
               </li>
             ))}
           </ul>

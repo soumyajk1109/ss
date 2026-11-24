@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Textile } from "@/components/shop/Textile";
 import { storefront } from "@/content/storefront";
 
@@ -12,9 +11,9 @@ export default function CollectionsPage() {
       <ul className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
         {storefront.collections.map((item) => (
           <li key={item.slug}>
-            <Link href={`/collections/${item.slug}`} className="block overflow-hidden rounded-2xl">
+            <div className="overflow-hidden rounded-2xl">
               <Textile hex={item.hex} label={item.name} patternKey={item.slug} image={"image" in item ? item.image : undefined} />
-            </Link>
+            </div>
           </li>
         ))}
       </ul>

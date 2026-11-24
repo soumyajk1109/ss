@@ -31,6 +31,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         display: ["var(--font-display)", "Georgia", "serif"],
+        hero: ["var(--font-hero)", "Georgia", "serif"],
       },
     },
   },
