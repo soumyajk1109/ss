@@ -6,12 +6,12 @@ export default function HomePage() {
   return (
     <div className="bg-paper">
       <section className="px-3 pt-3 md:px-5">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.6rem] bg-charcoal text-white">
-          <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 92% 18%, #F0B42955 0 80px, transparent 81px)" }} />
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.6rem] bg-turmeric-light text-charcoal">
+          <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 92% 18%, #E5A93B55 0 80px, transparent 81px)" }} />
           <div className="relative px-6 py-10 md:px-12 md:py-16">
-            <p className="text-xs uppercase tracking-[0.28em] text-rcs-gold">{storefront.hero.kicker}</p>
-            <h1 className="mt-3 max-w-3xl font-display text-4xl leading-none text-white md:text-6xl">{storefront.hero.title}</h1>
-            <p className="mt-4 max-w-md text-lg italic text-white">{storefront.hero.line}</p>
+            <p className="text-xs uppercase tracking-[0.28em] text-charcoal">{storefront.hero.kicker}</p>
+            <h1 className="mt-3 max-w-3xl font-display text-4xl leading-none text-rcs-red md:text-6xl">{storefront.hero.title}</h1>
+            <p className="mt-4 max-w-md text-lg italic text-rcs-red">{storefront.hero.line}</p>
           </div>
         </div>
       </section>

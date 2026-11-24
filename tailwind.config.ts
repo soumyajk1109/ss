@@ -7,6 +7,7 @@ const config: Config = {
       colors: {
         /** Palette. Save and refresh the preview to see a color change. */
         turmeric: "#E5A93B",
+        "turmeric-light": "#F6E3A4",
         saffron: "#F0B429",
         rcs: {
           red: "#E10600",
