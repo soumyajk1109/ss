@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Outfit } from "next/font/google";
+import { Bodoni_Moda, Fraunces, Outfit } from "next/font/google";
 import { connection } from "next/server";
 import { Providers } from "@/components/providers";
 import { storefront } from "@/content/storefront";
@@ -14,6 +14,12 @@ const display = Fraunces({
 const sans = Outfit({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const hero = Bodoni_Moda({
+  subsets: ["latin"],
+  variable: "--font-hero",
   display: "swap",
 });
 
@@ -36,7 +42,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   await connection();
   return (
     <html lang="en-IN">
-      <body className={`${display.variable} ${sans.variable} bg-paper font-sans text-charcoal antialiased`}>
+      <body className={`${display.variable} ${sans.variable} ${hero.variable} bg-paper font-sans text-charcoal antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>
