@@ -15,7 +15,7 @@ export const storefront = {
     line: "Woven with love, worn for every occasion.",
   },
   about:
-    "ಮದುವೆ ರೇಷ್ಮೆ, ಕೈಮಗ್ಗ ಹಾಗೂ ನಿತ್ಯದ ಸೀರೆಗಳ ಸಂಪೂರ್ಣ ಮಳಿಗೆ.\nYour Complete Destination for Bridal Silks, Handlooms & Everyday Sarees.",
+    "ಮದುವೆ ರೇಷ್ಮೆ, ಕೈಮಗ್ಗ ಹಾಗೂ ನಿತ್ಯದ ಸೀರೆಗಳ ಸಂಪೂರ್ಣ ಮಳಿಗೆ.\nYour destination for Bridal Silks, Handlooms & Everyday Sarees.",
   collections: [
     {
       slug: "silk",
